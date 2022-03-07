@@ -28,13 +28,6 @@ exports.getReviews = async (req, res, next) => {
 	}
 	const data = await database(options);
 
-    if (data?.length <= 0) {
-        res.send({
-            response: 200,
-            message: "No data found"
-        });
-    }
-
 	res.send({data});
 }
 

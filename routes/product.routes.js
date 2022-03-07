@@ -18,7 +18,7 @@ router.post('/product', productController.addNewProduct);
 /**
  * Get a Product
  */
- router.get('/product/:id', productController.getSingleProduct);
+router.get('/product/:id', productController.getSingleProduct);
 
 
 /**
