@@ -6,7 +6,7 @@
 | --- | --- |
 | `/user` | User management. |
 | `/product` | Product management. |
-| `/widhlist` | Product wishlist management. |
+| `/wishlist` | Product wishlist management. |
 | `/order` | Order management. |
 | `/category` | User management. |
 | `/comment` | User management. |
@@ -19,7 +19,9 @@
 ### `/users`
 |  |  |  |
 | --- | --- | --- |
-| `[GET]` |  | example |
-| `[POST]` |  | example |
-| `[PUT]` |  | example |
-| `[DELETE]` |  | example |
+```
+GET     /user 
+POST    /user
+PUT     /user
+DELETE  /user
+```
