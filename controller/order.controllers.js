@@ -111,3 +111,28 @@ exports.updateSingleOrder = async (req, res, next) => {
 
 	res.send(result);
 }
+
+
+/**
+ * Track Order
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+exports.trackOrder = async (req, res, next) => {
+	const {id, email} = await req.params;
+
+	let query = await { _id: ObjectId(id), email: email }
+
+	const options = await {
+		db: 'theautomobiles',
+		table: 'orders',
+		method: 'find',
+		data: {
+			find: query
+		}
+	}
+	const data = await database(options);
+
+	await res.send(data[0]);
+}
