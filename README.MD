@@ -1,3 +1,3 @@
-# Fashion Gallary
-This is a simple nodejs API. Made with express.js.
+# The Automobiles
+This is a simple nodejs E-Commerce API made with express.js.
 
