@@ -17,5 +17,8 @@
     "dev": "nodemon index.js"
   },
   "author": "Abu Taher Muhammad",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
 }
