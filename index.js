@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const chalk = require("chalk");
 const path = require("path");
 const { initializeFirebase } = require("./config/firebase.config");
 const { database } = require("./controller/mongodb.controller");
 const errorMiddleware = require("./middleware/error.middleware");
+const auth = require("./middleware/auth.middleware");
 
 // Routes
 const productRoutes = require("./routes/product.routes");
@@ -32,30 +32,6 @@ app.use("/api/v1/order", orderRoutes);
 app.use("/api/v1/review", reviewRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 
-// Middleware: Authorize
-const authorize = async (req, res, next) => {
-  if (req?.headers?.authorization?.startsWith("Bearer ")) {
-    const token = req.headers.authorization.split("Bearer ")[1];
-
-    try {
-      const decodedUser = await admin.auth().verifyIdToken(token);
-      console.log("user", decodedUser);
-      req.aguid = decodedUser.uid; // Authorized user id.
-      next();
-    } catch {
-      res.status(500).json({
-        status: 500,
-        messge: "Internal Server Error",
-      });
-    }
-  } else {
-    res.status(401).json({
-      status: 401,
-      messge: "User not authorized.",
-    });
-  }
-};
-
 // Routes
 /**
  *Route: /
@@ -65,7 +41,7 @@ app.get("/", async (req, res) => {
 });
 
 // Get Payments
-app.get("/payments", authorize, async (req, res) => {
+app.get("/payments", auth, async (req, res) => {
   const { limit, skip, ...filter } = req.query;
 
   const options = {
@@ -85,7 +61,7 @@ app.get("/payments", authorize, async (req, res) => {
 /**
  * Insert Payments
  */
-app.put("/payments", authorize, async (req, res) => {
+app.put("/payments", auth, async (req, res) => {
   const data = req.body;
 
   const options = {
@@ -100,6 +76,6 @@ app.put("/payments", authorize, async (req, res) => {
 
 // Server
 app.listen(port, () => {
-  console.log(chalk.cyanBright(`API server started at ${port}`));
-  console.log(chalk.cyanBright(`http://localhost:${port}`));
+  console.log(`API server started at ${port}`);
+  console.log(`http://localhost:${port}`);
 });
