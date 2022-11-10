@@ -6,7 +6,7 @@ const orderController = require("../controller/order.controllers");
  * Get All Orders
  */
 router
-  .route("/order")
+  .route("/")
   .get(orderController.getOrders)
   .post(orderController.placeNewOrder);
 

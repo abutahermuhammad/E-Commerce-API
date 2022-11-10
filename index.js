@@ -29,8 +29,8 @@ app.use(errorMiddleware);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/order", orderRoutes);
-app.use(reviewRoutes);
-app.use(paymentRoutes);
+app.use("/api/v1/review", reviewRoutes);
+app.use("/api/v1/payment", paymentRoutes);
 
 // Middleware: Authorize
 const authorize = async (req, res, next) => {
