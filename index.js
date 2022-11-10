@@ -5,6 +5,7 @@ const chalk = require("chalk");
 const path = require("path");
 const { initializeFirebase } = require("./config/firebase.config");
 const { database } = require("./controller/mongodb.controller");
+const errorMiddleware = require("./middleware/error.middleware");
 
 // Routes
 const productRoutes = require("./routes/product.routes");
