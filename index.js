@@ -26,9 +26,9 @@ app.use(express.json());
 app.use(errorMiddleware);
 
 // Routing Middlewares
-app.use(productRoutes);
-app.use(userRoutes);
-app.use(orderRoutes);
+app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/order", orderRoutes);
 app.use(reviewRoutes);
 app.use(paymentRoutes);
 
